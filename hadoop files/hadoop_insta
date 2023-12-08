@@ -1,0 +1,68 @@
+sudo apt install openjdk-8-jdk -y
+sudo apt install openssh-server openssh-client -y
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+chmod 0600 ~/.ssh/authorized_keys
+ssh localhost
+
+##hadoop-env.sh
+Uncomment JAVA_HOME by removing # and modify it to
+JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+
+##core-site.xml
+<configuration>
+<property>
+  <name>fs.default.name</name>
+  <value>hdfs://localhost:9000</value>
+</property>
+</configuration>
+
+Create a directory for datanodes and namenodes and add its location in hdfs-site.xml
+sudo mkdir /home/ubuntu/hadoop-3.3.0/
+
+##hdfs-site.xml
+<property>
+  <name>dfs.replication</name>
+  <value>1</value>
+</property>
+<property>
+  <name>dfs.namenode.name.dir</name>
+  <value>~/hadoop-3.3.0/data/namenode</value>
+</property>
+<property>
+  <name>dfs.datanode.data.dir</name>
+  <value>~/hadoop-3.3.0/data/datanode</value>
+</property>
+
+##mapred-site-xml
+<property> 
+  <name>mapreduce.framework.name</name> 
+  <value>yarn</value> 
+</property> 
+
+##yarn-site.xml
+<property>
+  <name>yarn.nodemanager.aux-services</name>
+  <value>mapreduce_shuffle</value>
+</property>
+<property>
+  <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+  <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.hostname</name>
+  <value>127.0.0.1</value>
+</property>
+<property>
+  <name>yarn.acl.enable</name>
+  <value>0</value>
+</property>
+<property>
+  <name>yarn.nodemanager.env-whitelist</name>   
+  <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
+</property>
+
+hdfs namenode -format
+
+start-all.sh
+

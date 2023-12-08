@@ -1,0 +1,13 @@
+wget https://downloads.apache.org/pig/pig-0.16.0/pig-0.16.0.tar.gz
+sudo tar -zxvf pig-0.16.0.tar.gz
+sudo mkdir -p /usr/local/pig
+sudo tar -zxvf pig-0.16.0.tar.gz
+cd pig-0.16.0/
+sudo mv * /usr/local/pig
+sudo chown -R ubuntu:ubuntu /usr/local/pig
+cd ..
+sudo vi ~/.bashrc
+export PIG_HOME=/usr/local/pig
+export PATH=$PATH:$PIG_HOME/bin
+source ~/.bashrc
+pig -x local

@@ -1,0 +1,27 @@
+wget https://downloads.apache.org/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
+tar -zxvf apache-hive-3.1.2-bin.tar.gz
+sudo nano .bashrc
+export HIVE_HOME= ~/apache-hive-3.1.2-bin
+export PATH=$PATH:$HIVE_HOME/bin
+source ~/.bashrc
+
+sudo nano $HIVE_HOME/bin/hive-config.sh
+export HADOOP_HOME=/home/hdoop/hadoop-3.2.1
+
+hdfs dfs -mkdir /tmp
+hdfs dfs -chmod g+w /tmp
+hdfs dfs -mkdir -p /user/hive/warehouse
+hdfs dfs -chmod g+w /user/hive/warehouse
+       
+rm $HIVE_HOME/lib/guava-19.0.jar
+cp $HADOOP_HOME/share/hadoop/hdfs/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
+
+schematool -initSchema -dbType derby
+
+hive
+
+cd $HIVE_HOME/conf
+cp hive-default.xml.template hive-site.xml
+sudo nano hive-site.xml
+ – change metastore location to above created 
+hdfs path(/user/hive/warehouse)

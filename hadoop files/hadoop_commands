@@ -1,0 +1,26 @@
+ hadoop fs -ls /path
+hadoop fs -ls /cbds
+ hadoop fs -mkdir /path
+hadoop fs -mkdir /cbds
+ hadoop fs -put <local-src> <hdfs-dest> 
+hadoop fs -put /home/ubuntu/Desktop/Y20ADS4/BDA/file.txt /cbds/ds
+ hadoop fs -get <hdfs-src> <local-dest>
+hadoop fs -get /cbds/ds/file.txt /home/ubuntu/Desktop/Y20ADS4
+ hadoop fs -copyToLocal <hdfs-src> <local-dest>
+hadoop fs -copyToLocal /cbds /home/ubuntu/Desktop/Y20ADS4
+ hadoop fs -copyFromLocal <local-src> <hdfs-dest> 
+hadoop fs -copyFromLocal /home/ubuntu/Desktop/Y20ADS4/BDA/Demo /cbds/ds
+ hadoop fs -rm <hdfs-path>
+hadoop fs -rm /cbds/ds/file1.txt
+ hadoop fs -cat <hdfs-file> 
+hadoop fs -cat /cbds/ds/file.txt
+ hadoop fs -mv <src>  <dest>
+hadoop fs -mv cbds/ds/Demo /cbds
+ hadoop fs -du -s -h <hdfs-path>
+hadoop fs -du -s -h /cbds/ds
+ hadoop fs -count <hdfs-path>
+hadoop fs -count /cbds
+ hadoop fs -tail <hdfs-file>
+hadoop fs -tail /cbds/ds/file.txt
+ hadoop fs -touchz <hdfs-file> 
+hadoop fs -touchz /cbds/ds/file1.txt

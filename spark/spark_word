@@ -1,0 +1,46 @@
+Step:-1
+Create a text file in your local machine and write some text into it.
+Command >$ nano sparkdata.txt
+and enter the some text in sparkdata file (with frequent words) and then save file using
+Command > $ ctr+o and ctr+x
+then Command >$ ctr+x
+step2:-
+Check the text written in the sparkdata.txt file.
+Command >$ cat parkdata.txt
+step3:-
+Create a directory in HDFS, where to kept text file.
+$Hdfs dfs -mkdir /spark
+Step4:-
+Upload the sparkdata.txt file on HDFS in the specific directory.
+$ hdfs dfs -put /home/codegyani/sparkdata.txt /spark
+Step5:-
+checkout once in hadoop file system using
+http://localhost:9870
+Step6:-
+Now, follow the below command to open the spark in Scala mode.
+Spark-shell
+Step7:-
+Let's create an RDD by using the following command.
+val data=sc.textFile("/home/ubuntu/sparkdata.txt")
+Step8:-
+Here, pass any file name that contains the data.
+data.collect;
+step9:-
+Here, we split the existing data in the form of individual words by using the following command.
+val splitdata = data.flatMap(line => line.split(" "));
+Step10:-
+Now, we can read the generated result by using the following command.
+splitdata.collect;
+Step11:-
+Now, perform the map operation.
+Val mapdata = splitdata.map(word => (word,1));
+Step12:-
+Now, we can read the generated result by using the following command.
+mapdata.collect;
+step13:-
+Now, perform the reduce operation
+scala> val reducedata = mapdata.reduceByKey(_+_);
+
+step14:-
+ >reducedata.collect;
+

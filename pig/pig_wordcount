@@ -1,0 +1,18 @@
+nano sparkdata1.txt
+pig -x local
+data = LOAD '/home/ubuntu/sparkdata2.txt' AS (line:chararray);
+
+words = FOREACH data GENERATE FLATTEN(TOKENIZE(line)) AS word;
+
+word_counts = GROUP words BY word;
+
+result = FOREACH word_counts GENERATE group AS word, COUNT(words) AS count;
+
+STORE result INTO 'wordcount_output';
+
+exit the grunt shell to ubuntu shell
+
+pig -x local wordcount.pig
+
+cat wordcount_output/part-r-00000
+
