@@ -12,7 +12,7 @@ nano ~/.bashrc
 path entered into bashrc file.
 #Spark related options
 export SPARK_HOME=/home/ubuntu/spark-3.5.0-bin-hadoop3
-export PATH=export PATH=$PATH:$SPARK_HOME/bin
+export PATH=$PATH:$SPARK_HOME/bin
 
 step:-4
 save and update the spark path for binary file
