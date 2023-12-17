@@ -1,22 +1,11 @@
-Step:-1
-Download the apache Spark-3.5.0-bin-hadoop3.tgz
-
 wget https://www.apache.org/dyn/closer.lua/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz
 
-Step:-2
-Extract the Apache Spark Package
-Command: tar xvf /home/ubuntu/Downloads/spark-3.5.0-bin-hadoop3.tgz
-step:-3
-Configure Environment Variables
+tar xvf /home/ubuntu/Downloads/spark-3.5.0-bin-hadoop3.tgz
+
 nano ~/.bashrc
-path entered into bashrc file.
-#Spark related options
+
 export SPARK_HOME=/home/ubuntu/spark-3.5.0-bin-hadoop3
 export PATH=export PATH=$PATH:$SPARK_HOME/bin
 
-step:-4
-save and update the spark path for binary file
 source ~/.bashrc
-step:-5
-Verify the Installation of spark using below command
->spark-shell
+spark-shell
