@@ -2,19 +2,8 @@ show databases;
 show tables;
 create table input(text_line string);
 
-Step1:
-create a table in local file system
-create table input(text_line string);
-Step2:
-loading the data into table “inpit’ (in local file system of the file)
-load data local inpath “/file path” into table input;
-example: load data local inpath '/home/ubuntu/sparkdata.txt' into table input;
-or
-load data inpath “HDFS file system path” into table input;
-step3:
 load data local inpath '/home/ubuntu/sparkdata.txt' into table input;
-step4:-
-create table wordcount as select word, COUNT(*) FROM input LATERAL VIEW
-explode(split(text_line,' ')) 1table as word group by word;
-step5:-
+
+create table wordcount as select word, COUNT(*) FROM input LATERAL VIEW explode(split(text_line,' ')) 1table as word group by word;
+
 select * from wordcount;

@@ -1,6 +1,6 @@
-nano sparkdata1.txt
+nano pigdata.txt
 pig -x local
-data = LOAD '/home/ubuntu/sparkdata2.txt' AS (line:chararray);
+data = LOAD '/home/ubuntu/pigdata.txt' AS (line:chararray);
 
 words = FOREACH data GENERATE FLATTEN(TOKENIZE(line)) AS word;
 
